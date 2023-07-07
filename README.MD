@@ -10,4 +10,4 @@ This repository will not be exhaustive, but will cover the parts that I feel I h
 
 ## The big picture
 
-- 1 > [My learning journey](/Learning%20Path/01.md)
+- 1 > [My learning journey](/Learning%20Path/01_path.md)
