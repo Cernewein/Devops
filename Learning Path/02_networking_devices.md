@@ -1,5 +1,7 @@
 # Networking devices
 
+I decided starting with networking because this is an area where I have some basic knowledge and know how some areas work, but I never took the time to build a proper foundational knowledge. I will be roughly following the same structure as in the [90 days of devops](https://github.com/MichaelCade/90DaysOfDevOps/blob/main/2022.md) networking part.
+
 ## Hosts
 
 Hosts are any device which sends or receives traffic over a network. For example:
@@ -65,6 +67,10 @@ This IP address is what is known as a gateway, it is a way out of the local netw
 They are what creates the hierarchy in networks and the internet.
 
 Routing is therefore the process of moving data between networks.
+
+The final global structure looks like this:
+
+![](/Learning%20Path/Images/Networking/networking_devices.png)
 
 
 There are many other devices that exist, but each of them implement switching and/or routing. Some of devices are:

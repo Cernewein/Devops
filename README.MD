@@ -11,3 +11,6 @@ This repository will not be exhaustive, but will cover the parts that I feel I h
 ## The big picture
 
 - 1 > [My learning journey](/Learning%20Path/01_path.md)
+
+## Networking
+- 2 > [Networking devices](/Learning%20Path/02_networking_devices.md)
