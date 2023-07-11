@@ -121,6 +121,13 @@ Example : 10.1.1.55/28 in CIDR notation.
 * \# IP Addresses - 16 of which 14 are usable
 * Subnet mask - 255.255.255.**240**
 
+There are also a number of reserved subnets. Among others: 
+
+* 10.0.0.0/8 - Range 10.0.0.0 - 10.255.255.255 - Used for local communications within a private network
+* 127.0.0.0/8 - Range 127.0.0.0 - 127.255.255.255 - Used for loopback addresses to the local host
+* 172.16.0.0/12 - Range 172.16.0.0 - 172.16.255.255 - USed for local communications within a private network
+* 192.168.0.0/16 - Range 192.168.0.0 - 192.168.255.255 - Used for local communications within a private network
+
 # Other resources
 
 * [Cloudflare - What is TLS ?](https://www.cloudflare.com/en-gb/learning/ssl/transport-layer-security-tls/)
