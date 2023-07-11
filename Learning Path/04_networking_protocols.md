@@ -18,18 +18,45 @@ This is the protocol used for sending mails. The client sends out a HELO request
 
 * HTTP - Hyper Text Transfer Protocol
 
-This is the protocol used on the web. A client sends out a GET request and the web server responds back with a 200 OK and the requested page.
+This is the protocol used on the web. A client sends out a GET request and the web server responds back with a 200 OK and the requested page. There are other requests and response codes, such as POST, response code 404...
 
 * SSL/TLS - Secure Sockets Layer/ Transport Layer Security
 
 TLS is now more common than SSL. TLS is a cryptographic protocol that provides secure communications over a network. It is used most commonly in HTTP (which then because HTTPS), but also mail, instan messaging and other apps.
-TLS is used primarily to provide security, integrity and authenticity, usually by using certificates. It is running in the presentation layer. A TLS connection is building a secure tunnel through which the communication flows.
+TLS is used primarily to provide security, integrity and authenticity, usually by using certificates. For a website to use TLS it must have a TLS certificate installed on its server. This certificate is issued by a certificate authority to the person owning the domain. This certificate contains information about the person who owns the domain and the server's public key. It is running in the presentation layer. 
+
+A TLS connection is building a secure tunnel through which the communication flows.
+Such a connection is initiated by using a TLS handshake sequence. When a person goes on website using TLS, the handshake is performed between the user's device and the server.
+
+A handshake performs following actions : 
+
+* Specify which TLS version is used
+* Decide on which cipher suite to use. A cipher suite is a set of algorithms that specifies details such as which what encryption and session keys will be used. TLS sets those keys on an unencrypted channel using public key cryptography (to avoid interception)
+* Authenticate the server identity using the certificate
+* Generate session keys for encrypting messages between them after then handshake is complete
+
+The messages are encrypted using public/private keys. This means that anyone with the public key can decrypt the messages, but only the original server owning the private key can encrypt them. On top of this, the message is signed using a message authentication code that can be used by the client to make sure the message has not been tampered with, and thus allows for making sure of the integrity of the data.
+
+I will be going through the process of setting up TLS for my website project once it is deployed on a server.
+
+
 
 * DNS - Domain Name System
 
 Usually we don't remember IP addresses but rather domain names. But these have to be translated into IP addresses in order for the connection to work out. This is where the DNS protocol comes into play.
 
 This protocol is used to convert a domain name into an IP address. The way this protocol works is through a DNS server. A client asks the server for the IP address associated to a specific domain name. The DNS server sends back the IP address, and the client can then directly use that IP address to communicate with the requested server.
+
+There are usually 4 DNS servers in a DNS lookup : 
+
+* DNS recursor - This is the server that a client asks for the translation of a domain name into an IP address. It is a bit like a librarian who gets asked to find a particular book in a library.
+* Root nameserver - This is the first step in translating (resolving) the domain name. This server acts like an index in a library that points to a aisle of the library.
+* TLD nameserver - The top level domain (TLD) server is a bit like a specific book shelf in the library. It is used to resolve the last part of a domain name, for example "com".
+* Authoritative nameserver - This is the final server that gets called. It is the dictionnary that can directly be used to translate something into its definition. Here the server directly translates the domain name into the IP address.
+
+When there are subdomains (foo.example.com) in a domain name, usually another authoritative nameserver is added to the DNS structure. 
+
+In order to speed things up, caching is used to store the DNS information. This caching can happen on different levels, for example inside the web browser on in the operating system.
 
 * DHCP - Dynamic Host configuration protocol
 
@@ -93,3 +120,8 @@ Example : 10.1.1.55/28 in CIDR notation.
 * Next network - 10.1.1.64
 * \# IP Addresses - 16 of which 14 are usable
 * Subnet mask - 255.255.255.**240**
+
+# Other resources
+
+* [Cloudflare - What is TLS ?](https://www.cloudflare.com/en-gb/learning/ssl/transport-layer-security-tls/)
+* [CloudFlare - What is DNS ?](https://www.cloudflare.com/en-gb/learning/dns/what-is-dns/)

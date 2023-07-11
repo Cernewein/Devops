@@ -14,3 +14,8 @@ This repository will not be exhaustive, but will cover the parts that I feel I h
 
 ## Networking
 - 2 > [Networking devices](/Learning%20Path/02_networking_devices.md)
+- 3 > [The OSI model](/Learning%20Path/03_networking_osi_model.md)
+- 4 > [Networking protocols](/Learning%20Path/04_networking_protocols.md)
+- 5 > [Linux networking tools](/Learning%20Path/05_networking_linux.md)
+
+## Linux
