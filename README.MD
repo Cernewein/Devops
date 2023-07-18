@@ -18,4 +18,6 @@ This repository will not be exhaustive, but will cover the parts that I feel I h
 - 4 > [Networking protocols](/Learning%20Path/04_networking_protocols.md)
 - 5 > [Linux networking tools](/Learning%20Path/05_networking_linux.md)
 
-## Linux
+## Linux and general OS knowledge
+
+- 6 > [General OS knowledge](/Learning%20Path/06_linux_os_knowledge.md)

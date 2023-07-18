@@ -1,6 +1,7 @@
 # Linux networking tools
 
 These notes concern some of the most common networking tools used in linux. Those tools are used for toubleshooting network issues, configuring network rules, copying data...
+This section is more of a collection of tools. The goal will be to use them when setting up a VPS for my personnal project.
 
 ## traceroute
 
@@ -46,9 +47,51 @@ Usage :
 nmap [ <Scan Type> ...] [ <Options> ] { <target specification> }
 ```
 
+## Netstat
+
+This tool is used to display all tcp, udp and unix socket connections. It also displays the listening sockets waiting for incoming connections.
+
+
+## UFW & iptables
+
+uncomplicated firewall (UFW) is a utility for managing firewall rules in Arch Linux, Debian and ubuntu. It is supposed to make the experience as simple as possible. It is actually a frontend to the *iptables* utility.
+*iptables* is used to create firewall rules that will allow or block traffic.
+
+Configuring a firewall will be the subject of another distinct section in my learning journey.
+
+## tcpdump
+
+tcpdump is a tool used for analysing network traffic passing through the system. It can be used to to capture and filter packets and also displays the informations in a human-readable format. A dump can be created and analysed later as well.
+
+
+## dig (Domain Information Groper)
+
+This tool is used to retrieve information from DNS servers. It used usually used for troubleshooting DNS problems.
+
+Usage : 
+
+```bash
+dig {target host}
+```
+
+## scp (Secure Copy Protocol)
+
+This tool is to securely copy files and directories between two locations. The two locations are usually linux based/unix based. SCP uses an encrypted connection via SSH. This ensures the transferred data is correctly protected.
+
+Usage :
+
+```bash
+scp [OPTIONS] [[user@]src_host:]file1 [[user@]dest_host:]file2
+```
+
 # Resources
 
 * [Geeks for geeks - Traceroute with examples](https://www.geeksforgeeks.org/traceroute-command-in-linux-with-examples/)
 * [Linuxsize - Ping command in Linux](https://linuxize.com/post/linux-ping-command/)
 * [javatpoint - Linux mtr command](https://www.javatpoint.com/linux-mtr)
 * [Free code camp - What is namp and how to use it](https://www.freecodecamp.org/news/what-is-nmap-and-how-to-use-it-a-tutorial-for-the-greatest-scanning-tool-of-all-time/)
+* [Tutorialspoint - netstat command in Linux with examples](https://www.tutorialspoint.com/unix_commands/netstat.htm)
+* [Linux.com - An introduction to Uncomplicated Firewall (UFW)](https://www.linux.com/training-tutorials/introduction-uncomplicated-firewall-ufw/)
+* [Hostinger - Iptables Tutorial - Secruing Ubuntu VPS with Linux Firewall](https://www.hostinger.in/tutorials/iptables-tutorial)
+* [Opensource.com - Introduction to tcpdump](https://opensource.com/article/18/10/introduction-tcpdump)
+* [geeks for geeks - dig command in linux with examples](https://www.geeksforgeeks.org/dig-command-in-linux-with-examples/)
