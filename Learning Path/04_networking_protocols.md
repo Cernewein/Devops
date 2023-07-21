@@ -16,9 +16,13 @@ This is a protocol that allows for transfering files from one host to the other.
 
 This is the protocol used for sending mails. The client sends out a HELO request to the smtp server which responds back with a 250 response. These two machines can now exchange mails.
 
-* HTTP - Hyper Text Transfer Protocol
+* HTTP - Hyper Text Transfer Protocol/Websockets
 
 This is the protocol used on the web. A client sends out a GET request and the web server responds back with a 200 OK and the requested page. There are other requests and response codes, such as POST, response code 404...
+
+Websockets allow for a full-duplex bi-directionnal communication between a client and a server. It is used in real-time web apps. With websockets there is no need to always send out requests to get new infos, for example the server can update a webpage when it has new data for the client (without the client needing to make a request).
+
+Websockets is an upgrade for HTTP.
 
 * SSL/TLS - Secure Sockets Layer/ Transport Layer Security
 
