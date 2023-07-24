@@ -1,7 +1,6 @@
 # General OS knowledge
 
 The goal here is to get a general overview of how an OS works, and in particular how linux works under the hood.
-These notes are based on the [tutorials point OS tutorial](https://www.tutorialspoint.com/operating_system/index.htm).
 
 ## Overview
 
@@ -21,13 +20,51 @@ Operating systems have been existing since the 1950s/60s. Unix for example was d
 
 ## Processing
 
-There are different ways processing can happen in a OS.
-
-**Batch processing**
-
-When doing batch processing, the OS collects programs and data together in a batch before processing starts. This is usually done to periodically complete high-volume, repetitive data jobs. Instead of running the tasks on individual bits of data, data is grouped into larger batches to optimize efficiency.
-
-**Multitasking**
+There are different ways processing can happen in a OS, but modern OSs allow for running multiple tasks at the same time. This is called multi-tasking.
 
 Multitasking is when multiple jobs are executed by the CPU simultaneously by switching between them. Those switches are so fast that a user doesn't feel them. He can interact with different programs on the same time. This is usually how a user is using his computer on a daily basis, for example Word, Email, Music all run in a multitasking fashion.
 A similar technique to multitasking is multiprogramming which simply uses a different process scheduling method.
+
+The load is split among the different CPU cores, this is called parrallelism. Each core handles a process and runs OS-related tasks in-between processes. The os-related tasks call a scheduler that plans what needs to be processed. A process only runs on one core at the time.
+
+![](/Learning%20Path/Images/OS/os_process_scheduling.png)
+
+A process is interrupted when the CPU receives a hardware interrupt signal. Then the process is interrupted and the progression is stored. The os scheduler then runs to plan what needs to be processed next. This is called pre-emptive multitasking. An interrupt is called on a regular basis (this is called a clocked system), for exemple every 10ms. This ensures that the CPU can change the running process at least several times per second. This mechanism is called concurrency.
+
+The processes not only share the CPU cores but also the system memory. The OS ensures that each process only has access to its own memory portion and doesn't interfere with the memory allocated to other processes. The OS however can access any memory portion. There still is a possibility for processes to access specific fixed OS memory places such as reading/writing files or network communication. To do this a process needs to invoque a specific CPU instruction called a syscall.
+
+The CPU runs in two different privilege levels. A first privilege level for the OS, and another one for processes. The second privilege level triggers exceptions if the processes try to access memory portions they aren't allowed to.
+
+## Process memory
+
+A process stores the elements it needs in three different memory sections : 
+* Text section for the code (stored as binary code in a contiguous chunk of memory.)
+* Call stack for the local variables
+* Heap for everything else
+
+The stack stores the variables for each process in a contiguous chunk called a frame. Additionnaly the memory address to return to after the process returns as well as the frame size are also stored. There also usually is an additionnal pointer tracing the top of the stack that is stored in a CPU register.
+The size of the stack space is often kept track of using a stack boundary pointer also stored in a CPU register. If the stack grows bigger than the stack boundary allows, this boundary is first increased up to a certain point until the system triggers an error called a stack overflow. Such an error is often caused by programms that don't run correctly, for example by habing too many nested recursive calls.
+In simpler systems there might not be this monitoring. A growing stack space might bump into memory addresses where it wasn't supposed to be creating bugs.
+
+![](/Learning%20Path/Images/OS/os_process_stack.png)
+
+No heap space exists when the process starts executing. The process explicitly needs to ask for it. The OS decides where it is placed, but the process determines the size. When the process is done with a chunk of heap, it is deallocated. Repeatadly allocating/deallocation heap space creates fragmentation. This means that the heap space that can be allocated to a single block shrinks even if the total heap space is bigger. If a process doesn't properly deallocate heap memory, the heap will run out of memory at some point. This is called a memory leak.
+![](/Learning%20Path/Images/OS/os_process_heap.png)
+
+The memory addresses are not refering directly to physical memory but it is mapped by the OS. It doens't have to be contiguous. A process can have memory located on any part of RAM and can only access its own parts. If a process tries to access part of its address space that is not mapped to actual RAM, an exception called a page fault is triggered. The mapped chunks in memory are called pages, and they are fixed length.
+
+To free up RAM, the OS might decide to swap out a page from RAM to storage, usually a hard drive. For example pages of heap memory for which the pages have been swapped are marked swapped in the process memory table.
+An attempt to access a swapped page will trigger an error and will trigger the OS swap the page back into RAM. Swapping is relatively slow but this way the total process memory can exceed system RAM.
+
+![](/Learning%20Path/Images/OS/os_process_mapping.png)
+
+## Threads
+
+A thread is a unit of execution within a process. A process has at least one thred but can have any amount. Multi-threaded processes contain more than one thread. All the threads share the process memory and resources. Each thread has its own stack but they will share the heap. Since threads share the same address space it is easy to communicate between them.
+
+
+# Resources
+
+* [tutorials point - OS tutorial](https://www.tutorialspoint.com/operating_system/index.htm)
+* [Brian Will - Operating System Basics](https://www.youtube.com/watch?v=9GDX-IyZ_C8)
+* [backblaze.com - What’s the Diff: Programs, Processes, and Threads](https://www.backblaze.com/blog/whats-the-diff-programs-processes-and-threads/)
