@@ -55,6 +55,7 @@ The memory addresses are not refering directly to physical memory but it is mapp
 
 To free up RAM, the OS might decide to swap out a page from RAM to storage, usually a hard drive. For example pages of heap memory for which the pages have been swapped are marked swapped in the process memory table.
 An attempt to access a swapped page will trigger an error and will trigger the OS swap the page back into RAM. Swapping is relatively slow but this way the total process memory can exceed system RAM.
+This memory management technique is called virtual memory.
 
 ![](/Learning%20Path/Images/OS/os_process_mapping.png)
 
@@ -62,9 +63,29 @@ An attempt to access a swapped page will trigger an error and will trigger the O
 
 A thread is a unit of execution within a process. A process has at least one thred but can have any amount. Multi-threaded processes contain more than one thread. All the threads share the process memory and resources. Each thread has its own stack but they will share the heap. Since threads share the same address space it is easy to communicate between them.
 
+## Interprocess communication (IPC)
+
+Two running processes can either be independent or cooperating. Independent processes cannot be affected nor do they affect other processes. Cooperating on the other hand can (be) afftect(ed) (by) other processes. Any process that shares data with other processes is a cooperating process.
+
+There are several reasons for providing an environment that allows process cooperation:
+
+* Information sharing. For example if several users are interested in a single piece of information.
+* Computation speedup. A big task can be split up into subtasks and these can be split out to different processes.
+* Modularity. A system is usually divided into different modules. These modules will later work together to achieve a same goal.
+* Convenience. For example a user might be doing different things at the same time. The different processes need therefore to communicate with each other in order to avoid clashes.
+
+There are two fundamental models of IPC:
+
+**Shared memory**
+Here a region of memory that is shared by cooperating processes is established. Processes can then exchange information by reading/writing data to the shared region.
+
+**Message passing**
+Here communication takes place by means of messages exchanged between the cooperating processes (think networking for example). These messages pass through the OS.
+Message passing is also often used for process synchronization where no explicit data needs to be sent. Here often just messages are just signals.
 
 # Resources
 
 * [tutorials point - OS tutorial](https://www.tutorialspoint.com/operating_system/index.htm)
 * [Brian Will - Operating System Basics](https://www.youtube.com/watch?v=9GDX-IyZ_C8)
 * [backblaze.com - What’s the Diff: Programs, Processes, and Threads](https://www.backblaze.com/blog/whats-the-diff-programs-processes-and-threads/)
+* [Neso Acamedy - Interprocess Communication](https://www.youtube.com/watch?v=dJuYKfR8vec)

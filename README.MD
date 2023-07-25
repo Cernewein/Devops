@@ -20,5 +20,8 @@ This repository will not be exhaustive, but will cover the parts that I feel I h
 
 ## Linux and general OS knowledge
 
-- 6 > [General OS knowledge](/Learning%20Path/06_linux_os_knowledge.md) *in progress*
+- 6 > [General OS knowledge](/Learning%20Path/06_linux_os_knowledge.md)
 - 7 > [Hands on: Setting up a VPS](/Learning%20Path/07_linux_hands_on_vps_setup.md)
+- 8 > [Classic linux terminal commands](/Learning%20Path/08_linux_terminal.md) *in progress*
+
+## Developing an app from beginning to end
